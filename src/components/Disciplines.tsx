@@ -19,9 +19,9 @@ const CARDS: DisciplineCard[] = [
   {
     index: '02 / 03',
     icon: '🥋',
-    title: 'BJJ',
-    body: 'Brazilian Jiu-Jitsu is chess with your body — every match is a live problem to solve under pressure. Competing teaches the thing most people avoid: how to lose well, and come back sharper.',
-    tags: ['Competition', 'Grappling', 'Discipline', 'Mental fortitude'],
+    title: 'COMPETE',
+    body: 'BJJ, strength training, etc. Competition is the testing ground — it exposes everything you haven\'t fixed yet and forces you to come back sharper.',
+    tags: ['Competition', 'Grappling', 'Strength Training', 'Mental fortitude'],
     cta: 'Train together',
     ctaHref: '#contact',
     cardClass: 'card-bjj',

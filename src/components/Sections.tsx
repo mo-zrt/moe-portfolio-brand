@@ -1,8 +1,8 @@
-import { useEffect, useRef } from 'react'
+
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import type { CollabRow } from '../types'
-
+import { useEffect, useRef } from 'react'
 gsap.registerPlugin(ScrollTrigger)
 
 // ── STATEMENT ─────────────────────────────────────────────
@@ -44,8 +44,8 @@ export function Statement() {
 const COLLABS: CollabRow[] = [
   { type: 'Fitness & Combat Sports', tag: 'BJJ Gear / Supplements / Apparel'     },
   { type: 'Music & Instruments',     tag: 'Guitar / Piano / Recording Gear'       },
-  { type: 'Tech & Lifestyle',        tag: 'Apps / Gadgets / Wearables'            },
-  { type: 'LGBTQ+ Brands',           tag: 'Pride-Aligned / Inclusive / Bold'      },
+  { type: 'Lifestyle',               tag: 'Fashion / Wellness/ Culture'           },
+  { type: 'Brands & LGBTQ+ Friendly ', tag: 'Pride-Aligned / Inclusive / Bold'    },
   { type: 'Personal Development',    tag: 'Courses / Coaching / Mindset'          },
 ]
 
@@ -162,12 +162,87 @@ export function Contact() {
           You found Mo-Zrt. Brand deals, collabs, music sessions, or just a conversation worth having.
           MØE responds to everything that's real.
         </p>
-        <a href="mailto:hello@moe.co" className="contact-email" ref={emailRef}>
-          hello@moe.co →
-        </a>
+        <form
+            onSubmit={async (e) => {
+              e.preventDefault()
+              const form = e.target as HTMLFormElement
+              const data = Object.fromEntries(new FormData(form))
+              await fetch('https://formspree.io/f/xqegwwaq', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+              })
+              form.reset()
+              alert('Message sent! MØE will be in touch.')
+            }}
+            style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%', maxWidth: '560px' }}
+        >
+          <input
+              type="text"
+              name="name"
+              placeholder="Your name"
+              required
+              style={{
+                background: 'transparent', border: '0.5px solid rgba(255,255,255,0.25)',
+                padding: '16px 20px', color: '#fff', fontSize: '14px',
+                fontFamily: 'inherit', letterSpacing: '0.05em', outline: 'none',
+              }}
+          />
+          <input
+              type="email"
+              name="email"
+              placeholder="Your email"
+              required
+              style={{
+                background: 'transparent', border: '0.5px solid rgba(255,255,255,0.25)',
+                padding: '16px 20px', color: '#fff', fontSize: '14px',
+                fontFamily: 'inherit', letterSpacing: '0.05em', outline: 'none',
+              }}
+          />
+          <select
+              name="collab"
+              defaultValue=""
+              style={{
+                background: '#1546ff', border: '0.5px solid rgba(255,255,255,0.25)',
+                padding: '16px 20px', color: '#fff', fontSize: '14px',
+                fontFamily: 'inherit', letterSpacing: '0.05em', outline: 'none',
+              }}
+          >
+            <option value="" disabled>Type of collab</option>
+            <option>Fitness & Combat Sports</option>
+            <option>Music & Instruments</option>
+            <option>Lifestyle</option>
+            <option>Brands</option>
+            <option>LGBTQ+ Friendly Brands</option>
+            <option>Personal Development</option>
+            <option>Other</option>
+          </select>
+          <textarea
+              name="message"
+              placeholder="Tell me about it"
+              rows={5}
+              required
+              style={{
+                background: 'transparent', border: '0.5px solid rgba(255,255,255,0.25)',
+                padding: '16px 20px', color: '#fff', fontSize: '14px',
+                fontFamily: 'inherit', letterSpacing: '0.05em', outline: 'none', resize: 'none',
+              }}
+          />
+          <button
+              type="submit"
+              style={{
+                background: 'var(--electric)', border: 'none', padding: '18px 40px',
+                color: '#080808', fontSize: '11px', fontFamily: 'inherit',
+                letterSpacing: '0.2em', textTransform: 'uppercase', cursor: 'pointer',
+                fontWeight: '500', transition: 'opacity 0.2s', alignSelf: 'flex-start',
+              }}
+          >
+            Send it →
+          </button>
+        </form>
         <div style={{ display: 'flex', gap: '16px', marginTop: '8px', flexWrap: 'wrap' }}>
           {SOCIALS.map(s => (
-            <a key={s} href="#" className="social-link">{s}</a>
+              <a key={s} href="#" className="social-link">{s}</a>
           ))}
         </div>
       </div>
