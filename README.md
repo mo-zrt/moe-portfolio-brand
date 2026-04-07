@@ -2,13 +2,7 @@
 
 Personal portfolio for MØE aka Mo-Zrt.
 
-## Stack
-- **React 18** + **TypeScript**
-- **Vite 5** — dev server & build
-- **Tailwind CSS 3** — utility classes + design tokens
-- **GSAP 3.12** + **ScrollTrigger** — all animations
-- **Lenis** — smooth scroll
-- **Google Fonts** — Bebas Neue, DM Mono, Instrument Serif
+
 
 ## Getting started
 
